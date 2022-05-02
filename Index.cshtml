@@ -1,29 +1,57 @@
-﻿
+﻿@model IEnumerable<DataBaseFirst.Models.footballdet>
+
 @{
     ViewBag.Title = "Index";
 }
 
 <h2>Index</h2>
-<div class="jumbotron">
-    <form action="~/Football/Save" method="post">
-        <label for="html">TeamName1</label>
-        <input type="text" name="teamname1" />
-        <br />
-        <label for="html">TeamName2</label>
-        <input type="text" name="teamname2" />
-        <br />
-        <label for="html">Status</label>
-        <select name="status" id="status">
-            <option value="Win">Win</option>
-            <option value="Draw">Draw</option>
-        </select>
-        <br />
-        <label for="html">WinningTeam</label>
-        <input type="text" name="winteam" />
-        <br />
-        <label for="html">Points</label>
-        <input type="text" name="points" />
-        <br />
-        <input type="submit" value="Insert" />
-    </form>
-</div>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TeamName1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TeamName2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WinTeam)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Points)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TeamName1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TeamName2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WinTeam)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Points)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.MatchID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.MatchID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.MatchID })
+        </td>
+    </tr>
+}
+
+</table>
