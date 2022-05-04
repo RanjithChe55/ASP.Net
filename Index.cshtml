@@ -1,57 +1,32 @@
-﻿@model IEnumerable<DataBaseFirst.Models.footballdet>
-
+﻿@model IEnumerable<Assignment4.Models.Account>
 @{
     ViewBag.Title = "Index";
 }
 
 <h2>Index</h2>
+<h2>
+    Viewing all accounts...
+</h2>
+@Html.ActionLink("Create new account", "Create")
+@foreach (var a in Model)
+{
+    <p>
+        Account Number: @a.AccountNumber
+    </p>
+    <p>
+        Account Holder's Name: @a.Name
+    </p>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.TeamName1)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TeamName2)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Status)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.WinTeam)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Points)
-        </th>
-        <th></th>
-    </tr>
+    <p>
+        Current Balance: @a.CurrentBalance.ToString("C")
+    </p>
+    @Html.ActionLink("Edit", "Edit", new { accno = @a.AccountNumber })
+    @Html.ActionLink("Delete", "Delete", new
+    {
+        accno =
+@a.AccountNumber
+    })
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.TeamName1)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TeamName2)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Status)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.WinTeam)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Points)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.MatchID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.MatchID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.MatchID })
-        </td>
-    </tr>
+    <hr />
 }
 
-</table>
